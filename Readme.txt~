@@ -1,0 +1,10 @@
+Menu.cpp is the one that loads up the main homescreen
+
+Tron.cpp is where the main code for game and the audio track is there.
+
+Note there is one drawback of using SDL_mixer library to play sounds . the sound file is played by a different process that you have no way of controlling once you execute your code.
+
+so you need to manually fork the process and then create and destroy it explicitly .
+
+
+to start game just run the start.sh shell script it'll compile and run game.

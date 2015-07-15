@@ -1,0 +1,98 @@
+menu .cpp 
+
+glutKeyboardFunc(mykeyboard)
+signature  -    void mykeyboard(unsigned char key, int x, int y)
+to detect the play keypress or exit keypress
+
+soil library macros used for displaying image via texture mapping 
+---------------------------------------------------------------------------------------------
+
+Tron.cpp
+
+----------------------------player class definition------------------------------------
+
+
+class player{ 
+
+public:
+    int id;
+    int posx;
+    int posy;
+    int xmin , ymin;
+    int xmax , ymax;
+    int score;
+    float red , green , blue;
+    int dir_state;
+    int valid[4];
+
+//player class parametrized constructor 
+ player(int id_no,int x, int y ,float r , float g , float b);
+    
+
+//exits the game for the caling object  makes the calling object as loser
+void game_exit();
+
+//mapping the logical coordinates to that of OpenGL coordinates (a hugely irritating obstacle)
+void update();
+
+//optional function to draw a bounding box along player object 
+    void border(int xmin,int ymin,int xmax,int ymax,float red, float green,float blue);
+
+//draw the actual square representing the player object (light cycles)
+void square(int xmin , int ymin,int xmax,int ymax,float red, float green,float blue);
+
+
+-----------------------------------global functions-------------------------------
+
+//to display raster text for game messages 
+void displaytext(int x, int y,char const* s);
+
+
+glutSpecialFunc(arrows);
+//to detect the arrow keypresses for blue player
+void arrows(int key,int x,int y){
+
+glutKeyboardFunc(keyboard);
+//controls for the orange player 
+void keyboard(unsigned char key,int x,int y){
+
+glutReshapeFunc();
+//Reshape function to change the clipping coordinates when we enter into the fullscreen mode 
+void reshape(GLsizei width,GLsizei height);
+
+//draw the game grid and the game boundary
+void draw_mesh();
+
+glutDisplayFunc(display);
+//display function that updates the game frames
+void display();
+
+glutIdleFunc(idle);
+//idle function to keep the game running
+void idle();
+
+
+--------------------------------------------SDL Audio API's-----------------------------------------------
+
+        // Open Audio device with bit rate of audio
+        Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 2048);
+
+        //initialize the audio channel
+        SDL_Init(SDL_INIT_AUDIO);
+
+        // Set the Volume
+        Mix_VolumeMusic(100);
+
+        //load the audio file
+        Mix_LoadMUS(const char*);
+
+         // Free the File
+        Mix_FreeMusic(music);
+
+        //close audio channel
+        Mix_CloseAudio();
+
+------------------------------------------STL Libraries-----------------------------------------
+
+        Vectors 
+        push_back();
